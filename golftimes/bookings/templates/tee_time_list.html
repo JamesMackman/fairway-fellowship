@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Tee Times{% endblock %}
+
+{% block content %}
+    <h2>Tee Times for {{ golf_course.name }}</h2>
+    <ul>
+        {% for tee_time in tee_times %}
+            <li>{{ tee_time.datetime }} - Availability: {{ tee_time.availability }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'book_tee_time' tee_time.id %}">
+        {% csrf_token %}
+        <!-- Form fields for booking a tee time -->
+        <button type="submit">Book Tee Time</button>
+    </form>
+{% endblock %}
