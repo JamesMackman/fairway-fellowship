@@ -9,4 +9,7 @@ class TeeTime(models.Model):
     golf_course = models.ForeignKey(GolfCourse, on_delete=models.CASCADE)
     datetime = models.DateTimeField()
     availability = models.IntegerField(default=0)
-   
+
+class Booking(models.Model):
+    tee_time = models.ForeignKey(TeeTime, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
