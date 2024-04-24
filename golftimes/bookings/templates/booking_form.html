@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Tee Time{% endblock %}
+
+{% block content %}
+    <h2>Book Tee Time</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Booking</button>
+    </form>
+{% endblock %}
