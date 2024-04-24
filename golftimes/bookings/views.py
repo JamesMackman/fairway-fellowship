@@ -1,7 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import TeeTime, Booking
+from django.views.generic import ListView, DetailView
+from .models import GolfCourse, TeeTime, Booking
 from .forms import BookingForm
+
+class GolfCourseListView(ListView):
+    model = GolfCourse
+    template_name = 'bookings/golf_course_list.html'
+    context_object_name = 'golf_courses'
+
+class TeeTimeDetailView(DetailView):
+    model = TeeTime
+    template_name = 'bookings/tee_time_detail.html'
+    context_object_name = 'tee_time'
 
 def golf_course_list(request):
     golf_courses = GolfCourse.objects.all()
@@ -31,3 +42,4 @@ def book_tee_time(request, tee_time_id):
         form = BookingForm()
 
     return render(request, 'bookings/booking_form.html', {'tee_time': tee_time, 'form': form})
+
