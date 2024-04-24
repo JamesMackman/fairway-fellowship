@@ -14,15 +14,6 @@ class TeeTimeDetailView(DetailView):
     template_name = 'bookings/tee_time_detail.html'
     context_object_name = 'tee_time'
 
-def golf_course_list(request):
-    golf_courses = GolfCourse.objects.all()
-    return render(request, 'bookings/golf_course_list.html', {'golf_courses': golf_courses})
-
-def tee_time_list(request, golf_course_id):
-    golf_course = GolfCourse.objects.get(pk=golf_course_id)
-    tee_times = TeeTime.objects.filter(golf_course=golf_course)
-    return render(request, 'bookings/tee_time_list.html', {'golf_course': golf_course, 'tee_times': tee_times})
-
 def book_tee_time(request, tee_time_id):
     tee_time = TeeTime.objects.get(pk=tee_time_id)
 
@@ -42,4 +33,5 @@ def book_tee_time(request, tee_time_id):
         form = BookingForm()
 
     return render(request, 'bookings/booking_form.html', {'tee_time': tee_time, 'form': form})
+
 
